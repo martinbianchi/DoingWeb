@@ -16,7 +16,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {BrowserModule} from '@angular/platform-browser';
 import { HabitsComponent } from '../habits/habits.component';
 import { HabitsAbmComponent } from '../habits-abm/habits-abm.component';
-
+import { NotesComponent } from '../notes/notes.component';
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 const insideRoutes: Routes = [
   {
     path: 'home',
@@ -76,6 +77,10 @@ const insideRoutes: Routes = [
         }
       },
       {
+        path: 'notes',
+        component: NotesComponent
+      },
+      {
         path: '**',
         redirectTo: 'index'
       },
@@ -95,7 +100,8 @@ const insideRoutes: Routes = [
     BlockUIModule,
     FullCalendarModule,
     OwlDateTimeModule,
-    OwlNativeDateTimeModule
+    OwlNativeDateTimeModule,
+    ScrollPanelModule
   ],
   exports: [
     RouterModule
@@ -107,6 +113,7 @@ const insideRoutes: Routes = [
     EventsComponent,
     HabitsComponent,
     HabitsAbmComponent,
+    NotesComponent,
 
   ]
 })

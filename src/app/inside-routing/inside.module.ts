@@ -13,7 +13,7 @@ import { HeaderComponent } from '../starter/header/header.component';
 import { HomeComponent } from '../home/home.component';
 import { SidebarComponent } from '../starter/sidebar/sidebar.component';
 import { FooterComponent } from '../starter/footer/footer.component';
-
+import {ScrollPanelModule} from 'primeng/scrollpanel';
 
 @NgModule({
   imports: [
@@ -26,6 +26,7 @@ import { FooterComponent } from '../starter/footer/footer.component';
     ReactiveFormsModule,
     DropdownModule,
     MultiSelectModule,
+    ScrollPanelModule
   ],
   declarations: [
   InsideRoutingComponent,
