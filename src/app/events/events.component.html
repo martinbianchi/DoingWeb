@@ -1,0 +1,88 @@
+<block-ui>
+  <div class="row">
+      <div class="col-md-3">
+
+          <!-- /. box -->
+          <div class="box box-solid">
+            <div class="box-header with-border">
+              <h3 class="box-title">Eventos</h3>
+            </div>
+            <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+            <div class="box-body">
+              <div class="btn-group" style="width: 100%; margin-bottom: 10px;">
+                <!--<button type="button" id="color-chooser-btn" class="btn btn-info btn-block dropdown-toggle" data-toggle="dropdown">Color <span class="caret"></span></button>-->
+                <ul class="fc-color-picker" id="color-chooser">
+                  <li><a class="text-aqua" (click)="setColor('#00c0ef')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-blue" (click)="setColor('#0073b7')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-light-blue" (click)="setColor('#3c8dbc')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-teal" (click)="setColor('#39cccc')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-yellow" (click)="setColor('#f39c12')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-orange" (click)="setColor('#ff851b')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-green" (click)="setColor('#00a65a')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-lime" (click)="setColor('#01ff70')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-red" (click)="setColor('#dd4b39')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-purple" (click)="setColor('#605ca8')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-fuchsia" (click)="setColor('#f012be')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-muted" (click)="setColor('#777')"><i class="fa fa-square"></i></a></li>
+                  <li><a class="text-navy" (click)="setColor('#001f3f')"><i class="fa fa-square"></i></a></li>
+                </ul>
+              </div>
+              <!-- /btn-group -->   
+              <div class="input-group">
+                  <input id="new-event-id" formControlName="id" type="text" class="form-control" style="display:none;">
+                </div>
+              <div class="input-group">
+                <input id="new-event" type="text" formControlName="title" class="form-control" placeholder="Titulo">
+              </div>
+              <div class="input-group">
+                <input id="new-event-description" formControlName="description" type="text" class="form-control" placeholder="Descripción">
+              </div>
+              <div class="input-group">
+                  <label>
+                      Fecha:</label>
+                      <input [selectMode]="'range'" formControlName="date" class="form-control" [owlDateTimeTrigger]="dt" [owlDateTime]="dt">
+                      <owl-date-time   #dt></owl-date-time>
+                  
+                <!-- <label for="new-event-dateFinish">Fecha finalización</label>
+                  <input id="new-event-dateFinish"  type="datetime-local" class="form-control" > -->
+              </div>
+                <div class="input-group-btn">
+                  <button id="add-new-event" type="submit" class="btn btn-primary btn-flat">Guardar</button>
+                  <button *ngIf="isUpdate" (click)="delete()" id="delete-new-event" type="button" class="btn btn-danger btn-flat">Eliminar</button>
+                </div>
+
+                <!-- /btn-group -->
+              
+              <!-- /input-group -->
+            </div>
+          </form>
+          </div>
+        </div>
+        <div class="col-md-9">
+            <section class="content-header">
+                <h1>
+                  Calendario
+                  <small>panel de control</small>
+                </h1>
+                <ol class="breadcrumb">
+                  <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                  <li class="active">Eventos</li>
+                </ol>
+              </section>
+              <div *ngIf="calendarOptions" >
+                <ng-fullcalendar [(eventsModel)]="events" #ucCalendar [options]="calendarOptions" (eventClick)="eventClick($event.detail)" (eventDrop)="updateEvent($event.detail)"
+                    (eventResize)="updateEvent($event.detail)" (eventRender)="eventRender($event.detail)" (clickButton)="clickButton($event.detail)"></ng-fullcalendar>
+            </div>
+        </div>
+  </div>
+      <!-- Content Header (Page header) -->
+      
+  </block-ui>
+      <!-- /.content -->
+    <!-- /.content-wrapper -->
+  
+  
+    
+  <!-- ./wrapper -->
+  
+  <!-- Page specific script -->

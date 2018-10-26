@@ -1,0 +1,42 @@
+<h1>Bienvenido a Doing!</h1>
+<div class="col-lg-3 col-xs-6">
+    <!-- small box -->
+    <div class="small-box bg-green">
+      <div class="inner">
+        <h3>Tareas</h3>
+
+        <p>Todas las tareas</p>
+      </div>
+      <div class="icon">
+        <i class="fa fa-tasks"></i>
+      </div>
+      <a [routerLink]="['/home/tasks']" class="small-box-footer">Ver <i class="fa fa-arrow-circle-right"></i></a>
+    </div>
+
+  </div>
+  <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-aqua">
+          <div class="inner">
+            <h3>Eventos</h3>
+    
+            <p>Mis eventos</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-calendar-o"></i>
+          </div>
+          <a [routerLink]="['/home/events']" class="small-box-footer">Ver <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+  </div>
+  <div class="col-lg-3 col-xs-6">
+      <div class="small-box bg-yellow">
+          <div class="inner">
+            <h3>Habitos</h3>
+    
+            <p>Mis habitos</p>
+          </div>
+          <div class="icon">
+            <i class="fa fa-line-chart"></i>
+          </div>
+          <a [routerLink]="['/home/habits']" class="small-box-footer">Ver <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+  </div>

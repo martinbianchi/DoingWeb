@@ -1,0 +1,78 @@
+<block-ui>
+<body class="hold-transition login-page">
+
+  <div class="login-box margin-login">
+    <div class="login-logo">
+      <a href="#"><b>Doing</b></a>
+
+    </div>
+    <!-- /.login-logo -->
+    <div class="login-box-body">
+      <p class="login-box-msg">Ingrese para iniciar sesión</p>
+  
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <div class="form-group has-feedback">
+          <input type="email" formControlName="email"  class="form-control" placeholder="Email">
+          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+          <!-- <div *ngIf="f.email.errors.required">El email es requerido.</div>
+          <div *ngIf="f.email.errors.email">El email debe ser válido</div> -->
+        </div>
+        <div *ngIf="displayMessage.email" class="alert alert-danger padding-error">
+          {{displayMessage.email}}
+       </div>
+        <div class="form-group has-feedback">
+          <input type="password" formControlName="password" class="form-control"  placeholder="Password">
+          <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+          <!-- <div *ngIf="f.password.errors.required">La contraseña es requerida</div>
+          <div *ngIf="f.password.errors.minlength">La contraseña debe tener al menos x caracteres</div> -->
+        </div>
+        <div *ngIf="displayMessage.password" class="alert alert-danger padding-error">
+          {{displayMessage.password}}
+        </div>
+        <div class="row">
+          <div class="col-xs-8">
+            <div class="pretty p-icon p-round p-jelly">
+              <input type="checkbox" />
+              <div class="state p-primary">
+                <i class="icon glyphicon glyphicon-ok"></i>
+                  <label>Recordarme</label>
+              </div>
+          </div>
+      
+          </div>
+          <!-- /.col -->
+          <div class="col-xs-4">
+            <button [disabled]="!loginForm.valid" type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+  
+      <div class="social-auth-links text-center">
+        <p>- Ó -</p>
+        <div *ngIf="usingFacebookLogin">
+          <a (click)="onLogin(1)" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Ingresar con
+            Facebook</a>
+        </div>
+        <div *ngIf="usingGoogleLogin">
+          <a (click)="onLogin(0)" class="btn btn-block btn-social btn-google btn-flat"><i class="fa fa-google-plus"></i> Ingresar con
+            Google+</a>
+        </div>
+        <div *ngIf="usingGraphLogin">
+          <a (click)="onLogin(2)" class="btn btn-block btn-social btn-linkedin btn-flat"><i class="fa fa-windows"></i> Ingresar con
+            Office 365</a>
+        </div>
+          
+
+      </div>
+      <!-- /.social-auth-links -->
+  
+      <!-- <a href="#">I forgot my password</a><br> -->
+      <!-- <a href="register.html" class="text-center">Register a new membership</a> -->
+  
+    </div>
+    <!-- /.login-box-body -->
+  </div>
+  <!-- /.login-box -->
+</body>
+</block-ui>

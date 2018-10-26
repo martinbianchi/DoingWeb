@@ -1,0 +1,10 @@
+.input-group{
+    margin-bottom: 10px;
+}
+::ng-deep .owl-dt-container {
+    font-size: 1.4rem;
+  }
+
+#delete-new-event{
+    float: right;
+}

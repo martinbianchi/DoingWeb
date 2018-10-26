@@ -1,0 +1,46 @@
+<block-ui>
+<div class="box box-primary">
+  <div class="box-header ui-sortable-handle" >
+    <i class="ion ion-clipboard"></i>
+
+    <h3 class="box-title">Mis tareas</h3>
+
+    <!-- <div class="box-tools pull-right">
+      <ul class="pagination pagination-sm inline">
+        <li *ngFor="let task of mytasks; let i = index"><a href="{{task.Id}}">i</a></li>
+
+        <li><a href="#">»</a></li>
+      </ul>
+    </div> -->
+  </div>
+  <!-- /.box-header -->
+  <div class="box-body">
+    <!-- See dist/js/pages/dashboard.js to activate the todoList plugin -->
+    <ul class="todo-list ui-sortable">
+      <li *ngFor="let task of mytasks">
+        <!-- drag handle -->
+        <span class=" ui-sortable-handle">
+              <i class="fa fa-ellipsis-v"></i>
+              <i class="fa fa-ellipsis-v"></i>
+        </span>
+        <!-- checkbox -->
+        <input type="checkbox" [checked]="task.Done" (change)="checkValue(task.Done, task.Id)">
+        <!-- todo text -->
+        <span *ngIf="task.Done" class="text done-task">{{task.Description}}</span>
+        <span *ngIf="!(task.Done)">{{task.Description}}</span>
+        <!-- Emphasis label -->
+        <small class="label label-info"><i class="fa fa-clock-o"></i>{{task.DueDate}}</small>
+        <!-- General tools such as edit or delete-->
+        <div class="tools">
+          <i [routerLink]="['/home/tasks/edit/',task.Id]" class="fa fa-edit"></i>
+          <i class="fa fa-trash-o" (click)="remove(task.Id)"></i>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <!-- /.box-body -->
+  <div class="box-footer clearfix no-border">
+    <button (click)="newTask()" type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Nueva tarea</button>
+  </div>
+</div>  
+</block-ui>

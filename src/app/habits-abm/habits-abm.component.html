@@ -1,0 +1,50 @@
+<block-ui>
+    <div class="col-md-offset-3 col-md-6">
+      <!-- Horizontal Form -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 *ngIf="isCreate" class="box-title">Nuevo hábito</h3>
+          <h3 *ngIf="!isCreate" class="box-title">Editar hábito</h3>
+        </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" [formGroup]="habitForm" (ngSubmit)="onSubmit()">
+          <div class="box-body">
+            <div class="form-group">
+              <label for="inputDescription" class="col-sm-2 control-label">Descripción</label>
+    
+              <div class="col-sm-10">
+                <input type="text" class="form-control" formControlName="description" id="inputDescription3" placeholder="Descripción">
+              </div>
+            </div>
+            <div class="col-sm-offset-2 col-sm-10">
+              <div class="checkbox">
+                <label for="">
+                    <input type="checkbox" [checked]="withFinishDate" (change)="checkValue()">
+                  Incluir fecha de finalización?
+                  
+                </label>
+              </div>
+                
+            </div>
+            <div *ngIf="withFinishDate" class="form-group">
+                <label for="inputFinishDate" class="col-sm-2 control-label align-text-center">Fecha de finalización</label>
+      
+                <div class="col-sm-10">
+                  <input type="date" class="form-control margin-top-input" formControlName="finishDate" id="inputFinishDate" placeholder="">
+                </div>
+              </div>
+  
+          </div>
+          <!-- /.box-body -->
+          <div class="box-footer">
+            <button type="button" [routerLink]="['/home/habits']" class="btn btn-default">Cancelar</button>
+            <button type="submit" *ngIf="isCreate" class="btn btn-info pull-right">Añadir</button>
+            <button type="submit" *ngIf="!isCreate" class="btn btn-info pull-right">Editar</button>
+          </div>
+          <!-- /.box-footer -->
+        </form>
+      </div>
+      <!-- /.box -->
+    </div>
+    </block-ui>
