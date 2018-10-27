@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Task } from '../models/Task';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-tasks',
@@ -15,8 +17,10 @@ export class TasksComponent implements OnInit {
   constructor(
     private _taskService: TasksService,
     private router: Router,
+    private _categoriesService: CategoriesService,
     private _toastrManager: ToastrManager) { }
 
+  private categories = [];
   private mytasks = [];
   ngOnInit() {
     this.blockUI.start('Cargando..');
@@ -32,6 +36,8 @@ export class TasksComponent implements OnInit {
         });
         this.blockUI.stop();
       }));
+
+
   }
 
   newTask(){

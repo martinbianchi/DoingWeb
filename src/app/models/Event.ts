@@ -1,4 +1,6 @@
 export class Event{
+    CategoryId:String;
+    CategoryName:String;
     DateStart: Date;
     DateFinish: Date;
     Description: String;

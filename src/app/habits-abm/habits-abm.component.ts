@@ -5,6 +5,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrManager } from 'ng6-toastr-notifications';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { Habits } from '../models/Habits';
+import { CategoriesService } from 'src/app/services/categories.service';
+import { Category } from 'src/app/models/Category';
 
 @Component({
   selector: 'app-habits-abm',
@@ -20,17 +22,20 @@ export class HabitsAbmComponent implements OnInit {
     private _habitsService: HabitsService,
     private _router: Router,
     private _route: ActivatedRoute,
-    private _toastrManager: ToastrManager
+    private _toastrManager: ToastrManager,
+    private _categoriesService: CategoriesService
   ) {
     this.withFinishDate = false;
    }
 
   typeForm;
+  categories = [];
   habit = new Habits();
   @BlockUI() blockUI: NgBlockUI;
   @ViewChildren(FormControlName, { read: ElementRef }) formInputElements: ElementRef[];
   get description() { return this.habitForm.get('description'); }
   get finishDate() { return this.habitForm.get('finishDate'); }
+  get category() { return this.habitForm.get('category'); }
 
   ngOnInit() {
     this.blockUI.start();
@@ -42,6 +47,18 @@ export class HabitsAbmComponent implements OnInit {
       else{
         this.isCreate = false;
       }
+    });
+
+    this._categoriesService.getAll()
+    .then((res) => {
+      res.forEach((el,index) => {
+        let category = new Category();
+        category = el.payload.val();
+        category.Id = res[index].key;
+        
+        this.categories.push(category);
+        console.log(category);
+      })
     });
     this.habitForm = this.modelCreate();
   }
@@ -55,8 +72,10 @@ export class HabitsAbmComponent implements OnInit {
             console.log(res.val());
             let date = res.val().FinishDate;
             this.description.patchValue(res.val().Description);
+            this.category.patchValue(res.val().CategoryId);
             if(date != null){
               this.finishDate.patchValue(date);
+              
               this.withFinishDate =true;
             }
             this.blockUI.stop();
@@ -70,7 +89,8 @@ export class HabitsAbmComponent implements OnInit {
   modelCreate(){
     return this.fb.group({
       description: ['', Validators.required],
-      finishDate: ''
+      finishDate: '',
+      category: ['', Validators.required]
     });
   }
 
@@ -81,6 +101,8 @@ export class HabitsAbmComponent implements OnInit {
   onSubmit(){   
     
     this.habit.Description = this.description.value;
+    this.habit.CategoryId = this.category.value;
+    this.habit.CategoryName = this.categories.find(x => x.Id == this.category.value).name;
     if(!this.withFinishDate){
       this.habit.FinishDate = null;
     }else{

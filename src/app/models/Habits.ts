@@ -1,4 +1,6 @@
 export class Habits{
+    CategoryId:String;
+    CategoryName:String;
     Description: String;
     CreatedAt: Date;
     DayStrike: number;

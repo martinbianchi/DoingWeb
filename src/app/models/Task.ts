@@ -1,4 +1,6 @@
 export class Task{
+    CategoryId:String;
+    CategoryName:String;
     Description: String;
     DueDate: Date;
     Priority: Number;
