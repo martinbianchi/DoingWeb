@@ -53,3 +53,10 @@
         <a [routerLink]="['/home/notes']" class="small-box-footer">Ver <i class="fa fa-arrow-circle-right"></i></a>
       </div>
 </div>
+<div class="col-md-6"> 
+    <p-chart type="pie" [data]="datapie"></p-chart>
+</div>
+<div class="col-md-6">
+    <p-chart type="radar" [data]="dataRadar" [options]="options"></p-chart>
+</div>
+

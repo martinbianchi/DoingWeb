@@ -18,6 +18,8 @@ import { HabitsComponent } from '../habits/habits.component';
 import { HabitsAbmComponent } from '../habits-abm/habits-abm.component';
 import { NotesComponent } from '../notes/notes.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
+import {ChartModule} from 'primeng/chart';
+
 const insideRoutes: Routes = [
   {
     path: 'home',
@@ -101,7 +103,8 @@ const insideRoutes: Routes = [
     FullCalendarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ChartModule
   ],
   exports: [
     RouterModule

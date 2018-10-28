@@ -6,7 +6,7 @@ import { InsideRoutingModule } from './inside-routing.module';
 import { BlockUIModule } from 'ng-block-ui';
 import { TableModule } from 'primeng/table';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { DropdownModule, MultiSelectModule } from 'primeng/primeng';
+import { DropdownModule, MultiSelectModule, ChartModule } from 'primeng/primeng';
 import { ErrorsModule } from '../core/errors';
 import { InsideRoutingComponent } from './inside-routing.component';
 import { HeaderComponent } from '../starter/header/header.component';
@@ -26,7 +26,8 @@ import {ScrollPanelModule} from 'primeng/scrollpanel';
     ReactiveFormsModule,
     DropdownModule,
     MultiSelectModule,
-    ScrollPanelModule
+    ScrollPanelModule,
+    ChartModule
   ],
   declarations: [
   InsideRoutingComponent,

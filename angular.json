@@ -52,7 +52,8 @@
               "./node_modules/admin-lte/bower_components/jquery-slimscroll/jquery.slimscroll.min.js",
               "./node_modules/admin-lte/bower_components/fastclick/lib/fastclick.js",
               "./node_modules/admin-lte/bower_components/moment/moment.js",
-              "./node_modules/admin-lte/bower_components/fullcalendar/dist/fullcalendar.min.js"
+              "./node_modules/admin-lte/bower_components/fullcalendar/dist/fullcalendar.min.js",
+              "./node_modules/chart.js/dist/Chart.js"
 
 
             ],
