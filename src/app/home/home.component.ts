@@ -4,6 +4,9 @@ import { TasksService } from 'src/app/services/tasks.service';
 import { Task } from 'src/app/models/Task';
 import { EventsService } from 'src/app/services/events.service';
 import { HabitsService } from 'src/app/services/habits.service';
+import { BlockUI, NgBlockUI } from 'ng-block-ui';
+
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,16 +14,18 @@ import { HabitsService } from 'src/app/services/habits.service';
 })
 export class HomeComponent implements OnInit {
 
+  showPie = false;
+  showRadar = false;
+  options;
+  @BlockUI() blockUI: NgBlockUI;
   categories = ["Otros", "Deportes", "Productividad", "Entretenimiento", "Cuidado Personal", "Trabajo", "Estudios"];
-  options=
-  {
-    scale:{
-      ticks:{
-        beginAtZero: true,
-        max: 4,
-        min: 0
-      }
-    }
+
+  optionsPie = {
+    title: {
+      display: true,
+      text: 'Estado de tareas activas',
+      fontSize: 16
+  }
   }
   tasksCategoriesUser;
   eventsCategoriesUser;
@@ -29,6 +34,7 @@ export class HomeComponent implements OnInit {
   dataRadar;
   tasksCompleted = 0;
   tasksUncompleted=0;
+
   constructor(
     private _authService: AuthService,
     private _tasksService: TasksService,
@@ -37,6 +43,7 @@ export class HomeComponent implements OnInit {
   ) { }
   role;
   ngOnInit() {
+    this.blockUI.start('Cargando...');
     this.role = this._authService.getUserLogedRol();
     this._tasksService.getAll()
       .then((res) => {
@@ -52,34 +59,43 @@ export class HomeComponent implements OnInit {
               this.tasksUncompleted +=1;
             }
           }
-   
+          
         });
-        this.datapie = {
-        labels:['Tareas completadas', 'Tareas sin completar'],
-        datasets:[
-          {
-            data:[this.tasksCompleted, this.tasksUncompleted],
-            backgroundColor:[
-              "#7eff66",
-              "#ea3939"
-            ],
-            hoverBackgroundColor:[
-              "#7eff66",
-              "#ea3939"
-            ]
-          }
-        ]};
+        if(this.tasksCompleted > 0 || this.tasksUncompleted > 0){
+          this.showPie = true;
+          this.datapie = {
+            labels:['Tareas completadas', 'Tareas sin completar'],
+            datasets:[
+              {
+                data:[this.tasksCompleted, this.tasksUncompleted],
+                backgroundColor:[
+                  "#7eff66",
+                  "#ea3939"
+                ],
+                hoverBackgroundColor:[
+                  "#7eff66",
+                  "#ea3939"
+                ]
+              }
+            ]};
+        }
+
         console.log(this.tasksCompleted);console.log(this.tasksUncompleted);
 
         this._eventsService.getAll()
           .then((res) => {
             this.eventsCategoriesUser = this.countCategories(res);
-
             this._habitService.getAll()
               .then((res) => {
                 this.habitsCategoriesUser = this.countCategories(res);
 
                 this.initializeRadar();
+                this.blockUI.stop();
+
+                if((this.eventsCategoriesUser.length > 0) || (this.habitsCategoriesUser.length > 0) || (this.tasksCategoriesUser.length > 0)){
+                  this.showRadar = true;
+                }
+                console.log(this.eventsCategoriesUser);
               })
           })
     });
@@ -87,6 +103,39 @@ export class HomeComponent implements OnInit {
   }
 
   initializeRadar(){
+    let maxEvents = Math.max(...this.eventsCategoriesUser);
+    let maxHabits = Math.max(...this.habitsCategoriesUser);
+    let maxTasks = Math.max(...this.tasksCategoriesUser);
+    let max = Math.max(maxEvents,maxHabits, maxTasks);
+
+    let minEvents = Math.max(...this.eventsCategoriesUser);
+    let minHabits = Math.max(...this.habitsCategoriesUser);
+    let minTasks = Math.max(...this.tasksCategoriesUser);
+    let minAux = Math.min(minEvents,minHabits, minTasks);
+
+    //Para que el minimo pueda ser mayor que 1 pero en el caso que haya cero de minimo
+    //no se vuelva negativo el label
+    let min = Math.max((minAux-3), 0);
+
+  
+   console.log(max,min);
+   
+    this.options =
+    {
+      scale:{
+        ticks:{
+          beginAtZero: true,
+          max: (max+1),
+          min: min
+        }
+      },
+      title: {
+        display: true,
+        text: 'Distribución de categorias',
+        fontSize: 16
+      }
+    };
+    
     this.dataRadar = {
       labels: this.categories,
       datasets:[

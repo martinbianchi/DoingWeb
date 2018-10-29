@@ -87,7 +87,7 @@ export class LoginService {
           .then((tok) => {
 
             user.id = this._afAuth.auth.currentUser.uid;
-            this._db.list('/users').set(user.id, user)
+            this._db.list('/users').set(user.id, {Name: user.first_name, Email: user.email, Surname: user.last_name, Password: user.password})
               .then(() => {
                 this.userLoged.next(user);
                 localStorage.setItem('auth_token', tok);

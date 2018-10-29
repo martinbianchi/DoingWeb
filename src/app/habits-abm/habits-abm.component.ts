@@ -110,7 +110,7 @@ export class HabitsAbmComponent implements OnInit {
     }
     if(this.typeForm == 'new'){
       this.habit.CreatedAt = new Date();
-      this.habit.DayStrike = 1;
+      this.habit.DayStrike = 0;
       this.habit.Strike = 0;
       this.habit.Finished = false;
       this.habit.isDisabled = false;

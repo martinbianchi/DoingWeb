@@ -25,7 +25,8 @@
               "src/favicon.ico",
               "src/assets",
               "src/web.config",
-              "src/fonts"
+              "src/fonts",
+              "src/ManualUsuario.pdf"
             ],
             "styles": [
               "src/styles.css",
