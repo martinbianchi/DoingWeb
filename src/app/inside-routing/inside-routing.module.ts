@@ -19,6 +19,7 @@ import { HabitsAbmComponent } from '../habits-abm/habits-abm.component';
 import { NotesComponent } from '../notes/notes.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
+import { ChartsComponent } from '../charts/charts.component';
 
 const insideRoutes: Routes = [
   {
@@ -83,6 +84,10 @@ const insideRoutes: Routes = [
         component: NotesComponent
       },
       {
+        path: 'charts',
+        component: ChartsComponent
+      },
+      {
         path: '**',
         redirectTo: 'index'
       },
@@ -117,6 +122,7 @@ const insideRoutes: Routes = [
     HabitsComponent,
     HabitsAbmComponent,
     NotesComponent,
+    ChartsComponent,
 
   ]
 })

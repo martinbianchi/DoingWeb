@@ -1,0 +1,62 @@
+<div class="hold-transition register-page">
+<div class="register-box ">
+  <div class="register-logo">
+    <a [routerLink]="['/login']"><b>Doing</b>!</a>
+  </div>
+
+  <div class="register-box-body">
+    <p class="login-box-msg">Registrar nueva cuenta</p>
+
+    <form  [formGroup]="registerForm" (ngSubmit)="onSubmit()" >
+      <div class="form-group has-feedback">
+        <input type="email" class="form-control" formControlName="email" placeholder="Email">
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+      <div *ngIf="displayMessage.email" class="alert alert-danger padding-error">
+          {{displayMessage.email}}
+       </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" formControlName="surname" placeholder="Apellido">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div *ngIf="displayMessage.surname" class="alert alert-danger padding-error">
+        {{displayMessage.surname}}
+     </div>
+      <div class="form-group has-feedback">
+        <input type="text" class="form-control" formControlName="name" placeholder="Nombre">
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+      </div>
+      <div *ngIf="displayMessage.name" class="alert alert-danger padding-error">
+        {{displayMessage.name}}
+     </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div *ngIf="displayMessage.name" class="alert alert-danger padding-error">
+        {{displayMessage.password}}
+     </div>
+      <div class="form-group has-feedback">
+        <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Repetir password">
+        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+      </div>
+      <div *ngIf="displayMessage.name" class="alert alert-danger padding-error">
+        {{displayMessage.confirmPassword}}
+     </div>
+     <div *ngIf="anotherError" class="alert alert-danger padding-error">
+      {{descrAnotherError}}
+     </div>
+      <div class="row">
+
+        <!-- /.col -->
+        <div class="col-xs-offset-8 col-xs-4">
+          <button type="submit" [disabled]="!registerForm.valid" class="btn btn-primary btn-block btn-flat pull-right">Registrar</button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </form>
+
+    <a [routerLink]="['/login']" class="text-center">Ya tengo una cuenta</a>
+  </div>
+  <!-- /.form-box -->
+</div>

@@ -78,6 +78,28 @@ export class LoginService {
     
   }
 
+  newAccount(user){
+    return new Promise((resolve, reject) => {
+      this._afAuth.auth.createUserWithEmailAndPassword(user.email, user.password)
+      .then((res) => {
+      console.log(this._afAuth.auth.currentUser.uid);
+        this._afAuth.auth.currentUser.getIdToken()
+          .then((tok) => {
+
+            user.id = this._afAuth.auth.currentUser.uid;
+            this._db.list('/users').set(user.id, user)
+              .then(() => {
+                this.userLoged.next(user);
+                localStorage.setItem('auth_token', tok);
+                localStorage.setItem('user_loged', JSON.stringify(user));
+                this.user = user;
+                resolve();
+              }).catch((err) => reject(err));
+          }).catch((err) => reject(err));
+      }).catch((err) => reject(err));
+    });
+  }
+
   getUserLoged(){
     return JSON.parse(localStorage.getItem('user_loged'));
   }

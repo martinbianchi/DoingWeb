@@ -3,7 +3,7 @@
 
   <div class="login-box margin-login">
     <div class="login-logo">
-      <a href="#"><b>Doing</b></a>
+      <a href="#"><b>Doing</b>!</a>
 
     </div>
     <!-- /.login-logo -->
@@ -59,8 +59,7 @@
             Google+</a>
         </div>
         <div *ngIf="usingGraphLogin">
-          <a (click)="onLogin(2)" class="btn btn-block btn-social btn-linkedin btn-flat"><i class="fa fa-windows"></i> Ingresar con
-            Office 365</a>
+          <a [routerLink]="['/register']" class="btn btn-block btn-social btn-linkedin btn-flat"><i class="fa fa-user-plus"></i> Crea una nueva cuenta</a>
         </div>
           
 

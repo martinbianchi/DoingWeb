@@ -22,12 +22,14 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { environment } from '../environments/environment';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    ErrorLoginComponent
+    ErrorLoginComponent,
+    RegisterComponent
   ],
   imports: [
     CommonModule,
