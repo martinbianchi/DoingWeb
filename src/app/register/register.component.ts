@@ -70,6 +70,8 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit() {
+    let token = localStorage.getItem('auth_token');
+        if(!!token) this.router.navigate(['/home']); 
     this.registerForm = this.modelCreate();
   }
 

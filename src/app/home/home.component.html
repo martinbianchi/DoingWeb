@@ -60,5 +60,10 @@
 </div>
 <div *ngIf="showRadar" class="col-md-6">
     <p-chart type="radar" [data]="dataRadar" [options]="options"></p-chart>
+</div>  
+<div class="col-md-offset-5 col-md-2 separate-button">
+    <a [routerLink]="['/home/charts']" class="btn btn-block btn-social btn-dropbox center">
+        <i class="fa fa-bar-chart"></i> ¡Ver más! 
+      </a>
 </div>
 </block-ui>

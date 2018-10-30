@@ -1,3 +1,86 @@
-<p>
-  charts works!
-</p>
+
+<block-ui>
+<div class="col-md-offset-1 col-md-10">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <i class="fa fa-success"></i>
+
+        <h3 class="box-title">Habitos en progreso</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+            <div class="callout callout-success col-md-5">
+                <h4>Felicitaciones!</h4>
+                <p>Has pasado {{PHBestDayStrike.dayStrike}} días consecutivos cumpliendo el hábito de {{PHBestDayStrike.name}}.</p>
+           </div>   
+           <div class="callout callout-danger separate-cards col-md-5">
+              <h4>Oops!</h4>
+              <p>Tu peor racha es de {{PHBestStrike.dayStrike}} días consecutivos sin cumplir el hábito de {{PHBestStrike.name}}. Ánimos tu puedes lograrlo!</p>
+           </div>   
+           <div  class="col-md-12"> 
+              <p-chart type="pie" [data]="dataPiePH" [options]="optionsPiePH"></p-chart>
+          </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+
+<div class="col-md-offset-1 col-md-10">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <i class="fa fa-success"></i>
+
+        <h3 class="box-title">Habitos en progreso</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+            <div class="callout callout-success col-md-5">
+                <h4>Felicitaciones!</h4>
+                <p>Has pasado {{FHBestDayStrike.dayStrike}} días consecutivos cumpliendo el hábito de {{FHBestDayStrike.name}}.</p>
+           </div>   
+           <div class="callout callout-danger separate-cards col-md-5">
+              <h4>Oops!</h4>
+              <p>Tu peor racha es de {{FHBestStrike.dayStrike}} días consecutivos sin cumplir el hábito de {{FHBestStrike.name}}.</p>
+           </div>   
+           <div class="col-md-12"> 
+              <p-chart type="pie" [data]="dataPieFH" [options]="optionsPieFH"></p-chart>
+          </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+<div class="col-md-offset-1 col-md-10">
+    <div class="box box-default">
+      <div class="box-header with-border">
+        <i class="fa fa-success"></i>
+
+        <h3 class="box-title">Habitos en progreso</h3>
+      </div>
+      <!-- /.box-header -->
+      <div class="box-body">
+            <div class="callout callout-success col-md-5">
+                <h4>Felicitaciones!</h4>
+                <p>Tu record histórico de días consecutivos cumpliendo el hábito de {{AHBestDayStrike.name}} es de {{AHBestDayStrike.dayStrike}} .</p>
+           </div>   
+           <div class="callout callout-danger separate-cards col-md-5">
+              <h4>Oops!</h4>
+              <p>Tu peor racha hasta el momento es de {{AHBestStrike.dayStrike}} días consecutivos sin cumplir el hábito de {{AHBestStrike.name}}. Animo puedes mejorar! </p>
+           </div>   
+           <div  class="col-md-6"> 
+              <p-chart type="pie" [data]="dataPieAH" [options]="optionsPieAH"></p-chart>
+          </div>
+          <div class ="col-md-6">
+              <p-chart type="doughnut" [data]="dataDoughnout" [options]="optionsDoughnout"></p-chart>
+          </div>
+      </div>
+      <!-- /.box-body -->
+    </div>
+    <!-- /.box -->
+</div>
+
+
+</block-ui>

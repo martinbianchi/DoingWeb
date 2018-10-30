@@ -20,12 +20,14 @@ import { NotesComponent } from '../notes/notes.component';
 import {ScrollPanelModule} from 'primeng/scrollpanel';
 import {ChartModule} from 'primeng/chart';
 import { ChartsComponent } from '../charts/charts.component';
+import {AccordionModule} from 'primeng/accordion';
+import {TabViewModule} from 'primeng/tabview';
 
 const insideRoutes: Routes = [
   {
     path: 'home',
     component: InsideRoutingComponent,
-    //canActivate: [RoleGuard],
+    canActivate: [RoleGuard],
     // data: {
     //   expectedRole: 'user'
     // },
@@ -109,7 +111,9 @@ const insideRoutes: Routes = [
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
     ScrollPanelModule,
-    ChartModule
+    ChartModule,
+    AccordionModule,
+    TabViewModule
   ],
   exports: [
     RouterModule
