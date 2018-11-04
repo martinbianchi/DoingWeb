@@ -61,8 +61,20 @@ export class EventsComponent implements OnInit, AfterViewInit {
         this.calendarOptions = {
           editable: true,
           eventLimit: false,
+          slotLabelFormat:'H:mm',
+          allDayText:'Todo el día',
           height: 600 ,
           locale: 'es',
+          timeFormat:'H:mm',
+          views: {
+            agenda:{
+              timeFormat:'H:mm' 
+            },
+            week: {
+              timeFormat: 'H:mm',
+              listDayFormat: 'H:mm'
+            },
+          },
           header: {
             left: 'prev,next today',
             center: 'title',
@@ -153,7 +165,8 @@ export class EventsComponent implements OnInit, AfterViewInit {
         start: model.event.start,
         end: model.event.end,
         title: model.event.title,
-        categoryId: model.event.categoryId
+        categoryId: model.event.categoryId,
+        categoryName: model.event.categoryName
         // other params
       },
       duration: {

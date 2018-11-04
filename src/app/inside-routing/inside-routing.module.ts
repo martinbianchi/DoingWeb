@@ -22,6 +22,9 @@ import {ChartModule} from 'primeng/chart';
 import { ChartsComponent } from '../charts/charts.component';
 import {AccordionModule} from 'primeng/accordion';
 import {TabViewModule} from 'primeng/tabview';
+import { OWL_DATE_TIME_LOCALE } from 'ng-pick-datetime';
+import { DatePickerConfig } from 'src/app/date-picker-config';
+import { OwlDateTimeIntl } from 'ng-pick-datetime/date-time/date-time-picker-intl.service';
 
 const insideRoutes: Routes = [
   {
@@ -110,6 +113,7 @@ const insideRoutes: Routes = [
     FullCalendarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    
     ScrollPanelModule,
     ChartModule,
     AccordionModule,
@@ -128,6 +132,10 @@ const insideRoutes: Routes = [
     NotesComponent,
     ChartsComponent,
 
+  ],
+  providers: [
+    {provide: OWL_DATE_TIME_LOCALE, useValue: 'es'},
+    {provide: OwlDateTimeIntl, useClass: DatePickerConfig},
   ]
 })
 export class InsideRoutingModule { }
