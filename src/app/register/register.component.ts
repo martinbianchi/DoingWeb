@@ -15,6 +15,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RegisterService } from 'src/app/services/register.service';
 import { LoginService } from 'src/app/services/login.service';
 
+import { AngularFireStorage } from '@angular/fire/storage';
+import { finalize } from 'rxjs/internal/operators/finalize';
 
 @Component({
   selector: 'app-register',
@@ -33,19 +35,23 @@ export class RegisterComponent implements OnInit {
 
   anotherError = false;
   descrAnotherError;
+  percentUpload = "60%";
+
+  profileUrlPhoto;
 
   get email() { return this.registerForm.get('email'); }
   get surname() { return this.registerForm.get('surname'); }
   get name() { return this.registerForm.get('name'); }
   get password() { return this.registerForm.get('password');}
   get confirmPassword() { return this.registerForm.get('confirmPassword');}
-
+  downloadURL;
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private _authService: AuthService,
     private _registerService : LoginService,
-    private _afAuth : AngularFireAuth
+    private _afAuth : AngularFireAuth,
+    private storage: AngularFireStorage
   ) { 
     this.validationMessages = {
       email:{
@@ -101,6 +107,7 @@ export class RegisterComponent implements OnInit {
     user.first_name = this.name.value;
     user.last_name = this.surname.value;
     user.password = this.password.value;
+    user.pictureUrl = this.profileUrlPhoto;
 
     this._registerService.newAccount(user)  
       .then(() => {
@@ -116,6 +123,24 @@ export class RegisterComponent implements OnInit {
         }
       })
     
+  }
+
+  myUploader(event){
+    this.blockUI.start('Cargando foto..')
+    const file = event.files[0];
+    const filePath = 'user/profilePhoto/'+this.email.value;
+    const ref = this.storage.ref(filePath);
+    const task = ref.put(file);
+
+    task.snapshotChanges().pipe(
+      finalize(() => this.downloadURL = ref.getDownloadURL()
+        .subscribe((res) => {
+          this.profileUrlPhoto = res;
+          this.blockUI.stop();
+        }) )
+   ).subscribe((res) => {
+     console.log(res);
+   })
   }
 
   modelCreate(){

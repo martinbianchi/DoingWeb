@@ -21,8 +21,11 @@ import { ErrorLoginComponent } from './error-login/error-login.component';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 import { RegisterComponent } from './register/register.component';
+import {FileUploadModule} from 'primeng/fileupload';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +49,8 @@ import { RegisterComponent } from './register/register.component';
     AngularFireModule.initializeApp(environment.firebase, 'doing-backend'),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
-
+    FileUploadModule,
+    AngularFireStorageModule,
     BlockUIModule.forRoot()
   ],
   providers: [],

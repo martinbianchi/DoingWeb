@@ -64,7 +64,8 @@ export class LoginService {
                 this.user.first_name = us.val().Name;
                 this.user.last_name = us.val().Surname;
                 this.user.id = this._afAuth.auth.currentUser.uid;
-
+                this.user.pictureUrl = us.val().ProfilePhoto;
+                
                 this.userLoged.next(this.user);
                 localStorage.setItem('user_loged', JSON.stringify(this.user));
                 this.loggedIn = true;
@@ -87,7 +88,7 @@ export class LoginService {
           .then((tok) => {
 
             user.id = this._afAuth.auth.currentUser.uid;
-            this._db.list('/users').set(user.id, {Name: user.first_name, Email: user.email, Surname: user.last_name, Password: user.password})
+            this._db.list('/users').set(user.id, {Name: user.first_name, Email: user.email, Surname: user.last_name, Password: user.password, ProfilePhoto: user.pictureUrl})
               .then(() => {
                 this.userLoged.next(user);
                 localStorage.setItem('auth_token', tok);

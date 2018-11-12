@@ -1,5 +1,6 @@
+<block-ui>
 <div class="hold-transition register-page">
-<div class="register-box ">
+  <div class="register-box">
   <div class="register-logo">
     <a [routerLink]="['/login']"><b>Doing</b>!</a>
   </div>
@@ -46,6 +47,15 @@
      <div *ngIf="anotherError" class="alert alert-danger padding-error">
       {{descrAnotherError}}
      </div>
+     <!-- <div class="form-group"> -->
+      <p-fileUpload [disabled]="!email.valid" chooseLabel="Elegir foto" name="myfile[]" auto="auto" customUpload="true" (uploadHandler)="myUploader($event)"></p-fileUpload>
+      <div class="progress progress-sm active">
+        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" attr.aria-valuenow="{{percentUpload}}" aria-valuemin="0" aria-valuemax="100" [style.width]="percentUpoad">
+          <span class="sr-only">{{percentUpload}}% Complete</span>
+        </div>
+      </div>
+    <!-- </div> -->
+    
       <div class="row">
 
         <!-- /.col -->
@@ -60,3 +70,5 @@
   </div>
   <!-- /.form-box -->
 </div>
+</div>
+</block-ui>

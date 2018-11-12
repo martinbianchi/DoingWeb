@@ -113,7 +113,6 @@ const insideRoutes: Routes = [
     FullCalendarModule,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
-    
     ScrollPanelModule,
     ChartModule,
     AccordionModule,
