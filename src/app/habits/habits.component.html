@@ -29,8 +29,8 @@
             <span *ngIf="habit.Done" class="text done-task">{{habit.Description}}</span>
             <span *ngIf="!(habit.Done)">{{habit.Description}}</span>
             <!-- Emphasis label -->
-            <small *ngIf="habit.DayStrike>0" class="label label-success"><i class="fa fa-check"></i>{{habit.DayStrike}} Racha de días</small>
-            <small *ngIf="habit.DayStrike==0" class="label label-danger"><i class="fa fa-close"></i>0 Perdiste la racha</small>
+            <small *ngIf="habit.DayStrike>0" class="label label-success"><i class="fa fa-check"></i>{{habit.DayStrike}} días cumplidos</small>
+            <!-- <small *ngIf="habit.DayStrike==0" class="label label-danger"><i class="fa fa-close"></i>0 Perdiste la racha</small> -->
             <!-- General tools such as edit or delete-->
             <div class="tools">
               <i (click)="finishHabit(habit.Id)" class="fa fa-flag-checkered"></i>

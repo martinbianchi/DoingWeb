@@ -107,7 +107,7 @@ export class ChartsComponent implements OnInit {
     let descr;
     habits.forEach((el,ind) => {
       if(el.Strike >= max){
-        max = el.DayStrike;
+        max = el.Strike;
         descr = el.Description;
       }
       sum += el.Strike;

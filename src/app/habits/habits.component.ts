@@ -74,10 +74,10 @@ export class HabitsComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: 'Si, continuar!',
       cancelButtonText: 'No, volver'
-    }).then((result) => {
-      let i = this.myhabits.findIndex(e => e.Id == id);
-      this.myhabits.splice(i,1);
+    }).then((result) => { 
       if (result.value) {
+        let i = this.myhabits.findIndex(e => e.Id == id);
+        this.myhabits.splice(i,1);
         this._habitsService.remove(id)
           .then(() => {
             this._toastrManager.successToastr('El habito se elimino correctamente', "Habito eliminado", {
